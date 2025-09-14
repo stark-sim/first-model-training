@@ -54,3 +54,12 @@ class TitanicDataset(Dataset):
         features = self.data.drop(columns=["Survived"]).iloc[idx].values
         label = self.data["Survived"].iloc[idx]
         return torch.tensor(features, dtype=torch.float32), torch.tensor(label, dtype=torch.float32)
+
+
+from torch.utils.data import DataLoader
+
+dataset = TitanicDataset(r"E:\电子书\RethinkFun深度学习\data\titanic\train.csv")
+dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+for inputs, labels in dataloader:
+    print(inputs.shape, labels.shape)
+    break
